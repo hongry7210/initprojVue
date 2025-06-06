@@ -1,20 +1,24 @@
 <template>
-    <div>
-      <h2>Home Page</h2>
-      <p>Welcome to the home page!</p>
-      
-      <!-- About 페이지로 이동하는 링크 -->
-      <router-link to="/about">Go to About Page</router-link> <!-- Vue Router를 이용해 이동 -->
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'HomePage'  // 컴포넌트 이름
-  }
-  </script>
-  
-  <style scoped>
-  /* 스타일 정의 */
-  </style>
-  
+  <div>
+    <h2>Home Page</h2>
+    <input type="text" v-model="userInput" placeholder="Enter some text" />
+    <button @click="goToAbout">Go to About Page</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HomePage',
+  data() {
+    return {
+      userInput: '', // 사용자가 입력한 텍스트
+    };
+  },
+  methods: {
+    goToAbout() {
+      // 입력된 텍스트를 쿼리 파라미터로 전달
+      this.$router.push({ path: '/about', query: { text: this.userInput } });
+    },
+  },
+};
+</script>
